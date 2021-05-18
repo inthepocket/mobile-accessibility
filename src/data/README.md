@@ -1,0 +1,3 @@
+# src/data
+
+Put dummy data here to include in the app. For example: mock API responses, array items...
