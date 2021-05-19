@@ -12,8 +12,8 @@ const MainStack = createStackNavigator();
 const MainRouter = () => {
   return (
     <NavigationContainer>
-      <MainStack.Navigator initialRouteName={Home.name}>
-        <MainStack.Screen component={Home} name={Home.name} />
+      <MainStack.Navigator initialRouteName={Home.title}>
+        <MainStack.Screen component={Home} name={Home.title} />
         {Object.values<AppRoute>(routes).map(view => (
           <MainStack.Screen
             key={view.title}

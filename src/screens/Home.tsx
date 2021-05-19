@@ -71,4 +71,6 @@ const Home = () => {
   );
 };
 
+Home.title = 'Home';
+
 export default Home;

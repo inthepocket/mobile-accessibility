@@ -4,14 +4,16 @@
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF",
         "foregroundImage": "./assets/adaptive-icon.png"
-      }
+      },
+      "package": "com.inthepocket.mobile_a11y"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "icon": "./assets/icon.png",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.inthepocket.mobile-accessibility"
     },
     "name": "Mobile Accessibility",
     "orientation": "portrait",
