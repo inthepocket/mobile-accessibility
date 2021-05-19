@@ -15,6 +15,7 @@
     },
     "name": "Mobile Accessibility",
     "orientation": "portrait",
+    "owner": "itpocket",
     "slug": "mobile-accessibility",
     "splash": {
       "backgroundColor": "#ffffff",

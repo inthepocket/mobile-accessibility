@@ -1,11 +1,18 @@
 {
+  "name": "mobile-accessibility",
   "main": "node_modules/expo/AppEntry.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inthepocket/mobile-accessibility"
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject"
+    "format": "prettier \"src/**/*.{js,ts,tsx}\"",
+    "format:fix": "npm run format -- --write",
+    "update:dev": "npm-check -u --dev-only",
+    "update": "npm-check -u --production"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
@@ -28,6 +35,8 @@
     "@expo/config": "^3.3.38",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
+    "npm-check": "^5.9.2",
+    "prettier": "^2.3.0",
     "typescript": "^4.2.4"
   },
   "private": true
