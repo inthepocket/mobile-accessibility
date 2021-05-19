@@ -3,7 +3,7 @@
 <!-- Banner & Badges. Badges should have newlines -->
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 ![written in typescript](https://img.shields.io/badge/language-typescript-blue.svg?style=flat-square)
-[![expo sdk v41](https://img.shields.io/badge/expo%20sdk-41-4630EB.svg?style=flat-square)](https://expo.io)
+[![expo sdk v41](https://img.shields.io/badge/expo%20sdk-41-4630EB.svg?style=flat-square)](exp://exp.host/@itpocket/mobile-accessibility)
 
 Mobile application to showcase usage, examples, effort and importance of accessibility support.
 
@@ -15,7 +15,10 @@ This application is written in React Native, but the underlying principles and A
 
 ## Install
 
-This application is currently only viewable by running it locally as it is not distributed to the App Store / Play Store.
+This application is currently only viewable by:
+
+- [Opening it with Expo Go](exp://exp.host/@itpocket/mobile-accessibility) installed on your mobile device
+- running it locally as it is not distributed to the App Store / Play Store.
 
 ### Dependencies
 
