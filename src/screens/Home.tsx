@@ -31,16 +31,18 @@ const Home = () => {
   const navigation = useNavigation();
   const [mode, setMode] = useAppMode();
 
+  const isAccessible = mode === 'accessible';
+
   return (
     <>
       <View style={styles.toggleContainer}>
         <Switch
           style={styles.switch}
-          value={mode === 'accessible' ? true : false}
+          value={isAccessible ? true : false}
           onValueChange={val => setMode(val ? 'accessible' : 'inaccessible')}
         />
         <Body>
-          {mode === 'accessible' ? '🥰' : '😕'} Running in '{mode}' mode
+          {isAccessible ? '🥰' : '😕'} Running in '{mode}' mode
         </Body>
       </View>
       <FlatList
@@ -52,6 +54,9 @@ const Home = () => {
             containerStyle={{ paddingVertical: 20 }}
             topDivider
             bottomDivider
+            accessible={isAccessible}
+            accessibilityLabel={isAccessible ? item.title : undefined}
+            accessibilityHint={isAccessible ? item.description : undefined}
           >
             <View>
               <ListItem.Title style={styles.screenTitles}>{item.title}</ListItem.Title>
