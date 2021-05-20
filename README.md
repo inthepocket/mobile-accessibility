@@ -7,6 +7,10 @@
 
 Mobile application to showcase usage, examples, effort and importance of accessibility support.
 
+<div align="center">
+  <img margin="auto" src="https://raw.githubusercontent.com/inthepocket/mobile-accessibility/main/.github/assets/hero.png" alt="Screenshots of the Mobile Accessibility application" />
+</div>
+
 ## Background
 
 The motivation for this app is to educate developers of mobile applications about the existing APIs on the iOS & Android platform to offer an experience accessible to all. Consider this sample (React Native) application as a playground or example to see the (mostly) low effort required to create a large difference in usage towards people who may not be able to depend on their vision, hearing, motion etc.
