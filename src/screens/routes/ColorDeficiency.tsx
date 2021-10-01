@@ -3,6 +3,7 @@ import { ScrollView, View } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import blinder from 'color-blind';
 import Body from '../../components/Body';
+import ToggleAccessibilityButton from '../../components/ToggleAccessibilityButton';
 
 enum Deficiencies {
   Protanopia = 'protanopia',
@@ -44,30 +45,30 @@ const ColorDeficiency = () => {
 
   return (
     <>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          marginVertical: 20,
-          flexWrap: 'wrap',
-        }}
-      >
-        <Button title="None" onPress={() => setDeficiency(null)} style={{ marginVertical: 5 }} />
-        {Object.values(Deficiencies).map(def => {
-          return (
-            <Button
-              title={def}
-              key={def}
-              onPress={() => setDeficiency(def)}
-              style={{
-                marginVertical: 5,
-              }}
-            />
-          );
-        })}
-      </View>
       <ScrollView>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            marginVertical: 20,
+            flexWrap: 'wrap',
+          }}
+        >
+          <Button title="None" onPress={() => setDeficiency(null)} style={{ marginVertical: 5 }} />
+          {Object.values(Deficiencies).map(def => {
+            return (
+              <Button
+                title={def}
+                key={def}
+                onPress={() => setDeficiency(def)}
+                style={{
+                  marginVertical: 5,
+                }}
+              />
+            );
+          })}
+        </View>
         <Input onChangeText={c => setColor(c)} value={color} />
         <Body>Viewing with deficiency '{deficiency || 'none'}'</Body>
         <View
@@ -78,6 +79,7 @@ const ColorDeficiency = () => {
           }}
         />
       </ScrollView>
+      <ToggleAccessibilityButton />
     </>
   );
 };

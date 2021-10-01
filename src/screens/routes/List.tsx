@@ -1,10 +1,13 @@
 import React from 'react';
-import { ListRenderItem, ListRenderItemInfo, SectionList, View } from 'react-native';
+import { ListRenderItem, ListRenderItemInfo, PixelRatio, SectionList, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import Header from '../../components/Header';
+import ToggleAccessibilityButton from '../../components/ToggleAccessibilityButton';
 import expenses from '../../data/expenses';
 import useAccessible from '../../hooks/useAccessible';
 import { months } from '../../utils/datetime';
+import { hasLargeFontScale } from '../../utils/dimensions';
+import { useAppMode } from '../../hooks/useAppMode';
 
 const data = [...months].map(month => {
   return {
@@ -14,6 +17,8 @@ const data = [...months].map(month => {
 });
 
 function ExpenseItem({ category, description, price, unit }: ReturnType<typeof expenses>[0]) {
+  const { isAccessible } = useAppMode();
+
   const a11y = useAccessible({
     accessible: true,
     accessibilityHint: description,
@@ -26,39 +31,50 @@ function ExpenseItem({ category, description, price, unit }: ReturnType<typeof e
       <View
         style={{
           flex: 1,
-          paddingVertical: 10,
+          flexDirection: isAccessible && hasLargeFontScale() ? 'column' : 'row',
+          alignItems: isAccessible && hasLargeFontScale() ? 'flex-start' : 'center',
         }}
       >
-        <ListItem.Title>{category}</ListItem.Title>
-        <ListItem.Subtitle>{description}</ListItem.Subtitle>
+        <View
+          style={{
+            flex: 1,
+            paddingVertical: 10,
+          }}
+        >
+          <ListItem.Title>{category}</ListItem.Title>
+          <ListItem.Subtitle>{description}</ListItem.Subtitle>
+        </View>
+        <ListItem.Subtitle>
+          {unit}
+          {price}
+        </ListItem.Subtitle>
       </View>
-      <ListItem.Subtitle>
-        {unit}
-        {price}
-      </ListItem.Subtitle>
     </ListItem>
   );
 }
 
 const List = () => {
   return (
-    <SectionList
-      sections={data}
-      keyExtractor={item => String(item.price)}
-      renderSectionHeader={({ section }) => (
-        <Header
-          style={{
-            fontSize: 14,
-            paddingHorizontal: 10,
-            paddingVertical: 5,
-            backgroundColor: '#efefef',
-          }}
-        >
-          {section.title}
-        </Header>
-      )}
-      renderItem={({ item }) => <ExpenseItem {...item} />}
-    />
+    <>
+      <SectionList
+        sections={data}
+        keyExtractor={item => String(item.price)}
+        renderSectionHeader={({ section }) => (
+          <Header
+            style={{
+              fontSize: 14,
+              paddingHorizontal: 10,
+              paddingVertical: 5,
+              backgroundColor: '#efefef',
+            }}
+          >
+            {section.title}
+          </Header>
+        )}
+        renderItem={({ item }) => <ExpenseItem {...item} />}
+      />
+      <ToggleAccessibilityButton />
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { ListItem, Switch } from 'react-native-elements';
 import { FlatList } from 'react-native-gesture-handler';
 import Body from '../components/Body';
+import ToggleAccessibilityButton from '../components/ToggleAccessibilityButton';
 import { useAppMode } from '../hooks/useAppMode';
 
 import * as routes from './routes';
@@ -16,9 +17,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 10,
   },
-  switch: {
-    marginRight: 20,
-  },
   screenTitles: {
     fontWeight: 'bold',
   },
@@ -29,19 +27,12 @@ const styles = StyleSheet.create({
 
 const Home = () => {
   const navigation = useNavigation();
-  const [mode, setMode] = useAppMode();
-
-  const isAccessible = mode === 'accessible';
+  const { mode, isAccessible } = useAppMode();
 
   return (
     <>
       <View style={styles.toggleContainer}>
-        <Switch
-          style={styles.switch}
-          value={isAccessible ? true : false}
-          onValueChange={val => setMode(val ? 'accessible' : 'inaccessible')}
-        />
-        <Body>
+        <Body allowFontScaling={!isAccessible}>
           {isAccessible ? '🥰' : '😕'} Running in '{mode}' mode
         </Body>
       </View>
@@ -67,10 +58,12 @@ const Home = () => {
           </ListItem>
         )}
       />
+      <ToggleAccessibilityButton />
     </>
   );
 };
 
 Home.title = 'Home';
+Home.key = 'home';
 
 export default Home;

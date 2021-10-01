@@ -15,11 +15,11 @@ export default function useLiveRegion(
   mutableValue: any,
   verbosity: AccessibilityProps['accessibilityLiveRegion'],
 ): LiveRegionReturn {
-  const [mode] = useAppMode();
+  const { isAccessible } = useAppMode();
   const [ref, setFocus] = useAccessibilityFocus();
 
   useEffect(() => {
-    if (mode === 'accessible') {
+    if (isAccessible) {
       setFocus();
     }
   }, [mutableValue]);

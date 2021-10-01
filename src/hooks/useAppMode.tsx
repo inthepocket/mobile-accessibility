@@ -1,16 +1,26 @@
-import React, { PropsWithChildren, useCallback, useContext, useState } from 'react';
+import React, { PropsWithChildren, useCallback, useContext, useMemo, useState } from 'react';
 
-export type Mode = 'accessible' | 'inaccessible';
+export enum Mode {
+  ACCESSIBLE = 'accessible',
+  INACCESSIBLE = 'inaccessible',
+}
 
-const DEFAULT_APP_MODE = 'accessible';
+const DEFAULT_APP_MODE = Mode.ACCESSIBLE;
 
-export const AppMode =
-  React.createContext<
-    [Mode, (mode: Mode) => void]
-    // @ts-expect-error
-  >(null);
+export interface AppModeContextProps {
+  mode: Mode;
+  setMode: (mode: Mode) => void;
+  isAccessible: boolean;
+}
+export const AppModeContext = React.createContext<AppModeContextProps | null>(null);
 
-export const useAppMode = () => useContext(AppMode);
+export const useAppMode = () => {
+  const context = useContext(AppModeContext);
+  if (!context) {
+    throw new Error('Wrap app with AppModeProvider');
+  }
+  return context;
+};
 
 export const AppModeProvider = ({ children }: PropsWithChildren<{}>) => {
   const [mode, setMode] = useState<Mode>(DEFAULT_APP_MODE);
@@ -22,5 +32,14 @@ export const AppModeProvider = ({ children }: PropsWithChildren<{}>) => {
     [setMode],
   );
 
-  return <AppMode.Provider value={[mode, handleSetMode]}>{children}</AppMode.Provider>;
+  const value = useMemo(
+    () => ({
+      mode,
+      setMode: handleSetMode,
+      isAccessible: mode === 'accessible',
+    }),
+    [mode, handleSetMode],
+  );
+
+  return <AppModeContext.Provider value={value}>{children}</AppModeContext.Provider>;
 };

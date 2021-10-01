@@ -3,6 +3,7 @@ import { Animated, View, StyleSheet } from 'react-native';
 import { ListItem, ListItemProps } from 'react-native-elements';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { RectButton } from 'react-native-gesture-handler';
+import { hasLargeFontScale } from '../utils/dimensions';
 
 interface Action {
   label: string;

@@ -4,6 +4,7 @@ import { Swipeable } from 'react-native-gesture-handler';
 import expenses from '../../data/expenses';
 import SwipeableListItem from '../../components/SwipeableListItem';
 import useAccessible from '../../hooks/useAccessible';
+import ToggleAccessibilityButton from '../../components/ToggleAccessibilityButton';
 
 const AccessibilityActions = () => {
   const [expense] = expenses(1);
@@ -36,17 +37,20 @@ const AccessibilityActions = () => {
   });
 
   return (
-    <SwipeableListItem
-      ref={ref}
-      title={category}
-      subtitle={description}
-      leftAction={actions.left}
-      rightAction={actions.right}
-      {...a11y}
-    >
-      {unit}
-      {price}
-    </SwipeableListItem>
+    <>
+      <SwipeableListItem
+        ref={ref}
+        title={category}
+        subtitle={description}
+        leftAction={actions.left}
+        rightAction={actions.right}
+        {...a11y}
+      >
+        {unit}
+        {price}
+      </SwipeableListItem>
+      <ToggleAccessibilityButton />
+    </>
   );
 };
 
