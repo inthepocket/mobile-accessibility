@@ -8,6 +8,14 @@ const ToggleAccessibilityButton = () => {
 
   return (
     <FAB
+      accessibilityLabel={
+        isAccessible ? 'Disable accessibility features' : 'Enable accessibility features'
+      }
+      accessibilityHint={
+        isAccessible
+          ? 'Press this button to disable accessibility features'
+          : 'Press this button to enable accessibility features'
+      }
       color="#001594"
       icon={
         <Icon size={25} name={isAccessible ? 'accessibility' : 'not-accessible'} color="white" />
