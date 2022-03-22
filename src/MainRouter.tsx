@@ -1,18 +1,25 @@
 import React from 'react';
 import { Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
 import * as routes from './screens/routes';
 import Home from './screens/Home';
 import InfoIcon from './components/InfoIcon';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useAppMode } from './hooks/useAppMode';
 
-const MainStack = createStackNavigator();
+const MainStack = createNativeStackNavigator();
 
 const MainRouter = () => {
+  const { isAccessible } = useAppMode();
   return (
     <NavigationContainer>
-      <MainStack.Navigator initialRouteName={Home.title}>
+      <MainStack.Navigator
+        initialRouteName={Home.title}
+        screenOptions={{
+          headerLargeTitle: isAccessible,
+        }}
+      >
         <MainStack.Screen component={Home} name={Home.title} />
         {Object.values<AppRoute>(routes).map(view => (
           <MainStack.Screen

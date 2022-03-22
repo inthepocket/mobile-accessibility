@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { View, Pressable, ScrollView, StyleSheet } from 'react-native';
 import Body from '../../components/Body';
+import ToggleAccessibilityButton from '../../components/ToggleAccessibilityButton';
 import useAccessible from '../../hooks/useAccessible';
 import { getBetween } from '../../utils/number';
 
@@ -79,11 +80,14 @@ const Button = ({ children, disabled }: PropsWithChildren<ButtonProps>) => {
 // disabled, checked, in progress, loading, busy
 const State = () => {
   return (
-    <ScrollView>
-      <Button>Enabled button</Button>
-      <Button disabled>Disabled button</Button>
-      <Progress />
-    </ScrollView>
+    <>
+      <ScrollView>
+        <Button>Enabled button</Button>
+        <Button disabled>Disabled button</Button>
+        <Progress />
+      </ScrollView>
+      <ToggleAccessibilityButton />
+    </>
   );
 };
 
